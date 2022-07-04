@@ -64,13 +64,11 @@
 		094358972852F02900A27A17 /* GitFriends */ = {
 			isa = PBXGroup;
 			children = (
-				094358A12852F02A00A27A17 /* Assets.xcassets */,
-				09AEEAC42872B52700521DD8 /* String+Ext.swift */,
 				094358A62852F02A00A27A17 /* Info.plist */,
-				094358982852F02900A27A17 /* AppDelegate.swift */,
-				0943589A2852F02900A27A17 /* SceneDelegate.swift */,
-				09AEEABE2872A92300521DD8 /* Controllers */,
 				09AEEABD2872A91A00521DD8 /* View */,
+				09AEEABE2872A92300521DD8 /* Controllers */,
+				09AEEACE2873A28800521DD8 /* Extensions */,
+				09AEEACF2873A2C600521DD8 /* Other */,
 			);
 			path = GitFriends;
 			sourceTree = "<group>";
@@ -78,7 +76,6 @@
 		09AEEABD2872A91A00521DD8 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				094358A32852F02A00A27A17 /* LaunchScreen.storyboard */,
 				09AEEAB92872A42900521DD8 /* GFButton.swift */,
 				09AEEABB2872A80100521DD8 /* GFTextField.swift */,
 			);
@@ -93,6 +90,25 @@
 				09AEEAC02872B1D100521DD8 /* FollowersVC.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		09AEEACE2873A28800521DD8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				09AEEAC42872B52700521DD8 /* String+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		09AEEACF2873A2C600521DD8 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				094358A12852F02A00A27A17 /* Assets.xcassets */,
+				094358982852F02900A27A17 /* AppDelegate.swift */,
+				094358A32852F02A00A27A17 /* LaunchScreen.storyboard */,
+				0943589A2852F02900A27A17 /* SceneDelegate.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
