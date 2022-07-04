@@ -13,6 +13,11 @@ class SearchVC: UIViewController {
     let logoImageView = UIImageView()
     let usernameTextField = GFTextField()
     let ctaButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
+    
+    // Computed property
+    var isUsernameEntered: Bool {
+        return !usernameTextField.text!.isEmpty
+    }
 
     // Get called once when view is first loaded in memory
     override func viewDidLoad() {
@@ -39,6 +44,24 @@ class SearchVC: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
+    // Push = add VC on stack, Pop = remove VC off of stack
+    @objc func pushFollowerListVC() {
+        // Line in the sand, can't get past if criteria is not met
+        guard isUsernameEntered else {
+            print("No username")
+            return
+        }
+            
+        let vc = FollowersVC()
+        
+        // Pass username to the next screen
+        vc.username = usernameTextField.text
+        
+        // Set the title of vc 
+        vc.title = usernameTextField.text
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func configureLogoImageView() {
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,6 +86,10 @@ class SearchVC: UIViewController {
     func configureTextField() {
         view.addSubview(usernameTextField)
         
+        // Set textField's delegate to SearchVC
+        // So now, the delegate listens for specific action from SearchVC to respond
+        usernameTextField.delegate = self
+        
         NSLayoutConstraint.activate([
             // Pinned to the bottom of logoImageView
             usernameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
@@ -77,6 +104,10 @@ class SearchVC: UIViewController {
     func configureCTAButton() {
         view.addSubview(ctaButton)
         
+        // Add target to button so it has a function
+        // touchUpInside = normal button tap (others are for edge cases)
+        ctaButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
             // Pinned to the bottom of the superview, use negative constant for bottomAnchor
             ctaButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
@@ -84,5 +115,17 @@ class SearchVC: UIViewController {
             ctaButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             ctaButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+    }
+}
+
+// In order for SarchVC to access textField's text, it needs to conform to UITextFieldDelegate
+// Delegate = sits back and listens to the SearchVC, so our action is tapping a return key
+// When delegate detects that return key is tapped, it saves the textField's text
+extension SearchVC: UITextFieldDelegate {
+    
+    // Responds when delegate detects that return button is tapped 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        pushFollowerListVC()
+        return true
     }
 }
