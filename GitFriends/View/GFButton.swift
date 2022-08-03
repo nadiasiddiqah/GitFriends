@@ -8,7 +8,7 @@
 import UIKit
 
 class GFButton: UIButton {
-
+    
     // Override initializer for UIButton
     // If it's not a custom view, don't need to override
     override init(frame: CGRect) {
@@ -29,7 +29,7 @@ class GFButton: UIButton {
         // You can initialize with zero, bc we will set the frame using autolayout
         super.init(frame: .zero)
         self.backgroundColor = backgroundColor
-        self.setTitle(title, for: .normal)
+        setTitle(title, for: .normal)
         configure()
     }
     
@@ -40,6 +40,7 @@ class GFButton: UIButton {
         titleLabel?.textColor = .white
         // Create dynamic type 
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+        
         // allows you to use autolayout when using programmatic UI
         translatesAutoresizingMaskIntoConstraints = false
     }

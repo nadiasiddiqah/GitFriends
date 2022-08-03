@@ -40,15 +40,18 @@ class SearchVC: UIViewController {
     
     func dismissKeyboardTapGesture() {
         // endEditing function causes view (or its embedded text field) to resign first responder status
+        // #selector = remnants of obj-c, use @objc func to expose function to obj-c
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }
     
     // Push = add VC on stack, Pop = remove VC off of stack
     @objc func pushFollowerListVC() {
-        // Line in the sand, can't get past if criteria is not met
+        // Line in the sand, can't get past if condition is not met
         guard isUsernameEntered else {
-            print("No username")
+            presentGFAlertOnMainThread(title: "Empty username",
+                                       message: "Please enter a username. We need to know who to look for 😀.",
+                                       buttonTitle: "OK")
             return
         }
             

@@ -22,6 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()  // shows window with its rootVC
 
         self.window = window
+        
+        configureNavigationBar()    // set navBar's tint color to green
     }
     
     
