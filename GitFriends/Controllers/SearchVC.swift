@@ -35,7 +35,7 @@ class SearchVC: UIViewController {
     // Gets called everytime view appears (if you go back and forth between this + another screen)
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func dismissKeyboardTapGesture() {
@@ -55,7 +55,7 @@ class SearchVC: UIViewController {
             return
         }
             
-        let vc = FollowersVC()
+        let vc = FollowersListVC()
         
         // Pass username to the next screen
         vc.username = usernameTextField.text
