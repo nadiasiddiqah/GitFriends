@@ -14,11 +14,13 @@ class SearchVC: UIViewController {
     let usernameTextField = GFTextField()
     let ctaButton = GFButton(backgroundColor: .systemGreen, title: "Get Followers")
     
+    
     // Computed property
     var isUsernameEntered: Bool {
         return !usernameTextField.text!.isEmpty
     }
 
+    
     // Get called once when view is first loaded in memory
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +34,13 @@ class SearchVC: UIViewController {
         dismissKeyboardTapGesture()
     }
     
+    
     // Gets called everytime view appears (if you go back and forth between this + another screen)
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
+    
     
     func dismissKeyboardTapGesture() {
         // endEditing function causes view (or its embedded text field) to resign first responder status
@@ -44,6 +48,7 @@ class SearchVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
         view.addGestureRecognizer(tap)
     }
+    
     
     // Push = add VC on stack, Pop = remove VC off of stack
     @objc func pushFollowerListVC() {
@@ -64,6 +69,7 @@ class SearchVC: UIViewController {
         vc.title = usernameTextField.text
         navigationController?.pushViewController(vc, animated: true)
     }
+    
     
     func configureLogoImageView() {
         view.addSubview(logoImageView)
@@ -86,6 +92,7 @@ class SearchVC: UIViewController {
         ])
     }
     
+    
     func configureTextField() {
         view.addSubview(usernameTextField)
         
@@ -104,6 +111,7 @@ class SearchVC: UIViewController {
         ])
     }
     
+    
     func configureCTAButton() {
         view.addSubview(ctaButton)
         
@@ -120,6 +128,7 @@ class SearchVC: UIViewController {
         ])
     }
 }
+
 
 // In order for SarchVC to access textField's text, it needs to conform to UITextFieldDelegate
 // Delegate = sits back and listens to the SearchVC, so our action is tapping a return key

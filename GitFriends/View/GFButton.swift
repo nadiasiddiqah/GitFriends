@@ -37,7 +37,7 @@ class GFButton: UIButton {
     // Can't be used about GFButton is initialized
     private func configure() {
         layer.cornerRadius = 10
-        titleLabel?.textColor = .white
+        setTitleColor(.white, for: .normal)
         // Create dynamic type 
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
         

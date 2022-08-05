@@ -17,35 +17,35 @@ class NetworkManager {
     
     // Completion returns [Followers]? or String? (for error)
     func getFollowers(for username: String, page: Int,
-                      completion: @escaping (([Follower]?, String?) -> Void)) {
+                      completion: @escaping (Result<[Follower], GFError>) -> Void) {
         let endpoint = baseUrl + "\(username)/followers?per_page=100&page=\(page)"
         
         guard let url = URL(string: endpoint) else {
-            completion(nil, "Invalid URL")
+            completion(.failure(.invalidUsername))
             return
         }
         
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if error != nil {
-                completion(nil, "Data task error")
+                completion(.failure(.unableToComplete))
                 return
             }
             
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completion(nil, "Invalid response")
+                completion(.failure(.invalidResponse))
                 return
             }
             
             guard let data = data else {
-                completion(nil, "No data")
+                completion(.failure(.invalidData))
                 return
             }
             
             do {
                 let result = try JSONDecoder().decode([Follower].self, from: data)
-                completion(result, nil)
+                completion(.success(result))
             } catch {
-               completion(nil, "Can't unwrap data")
+                completion(.failure(.invalidData))
             }
 
         }

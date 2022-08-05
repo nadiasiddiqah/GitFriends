@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Follower: Codable {
+// If underlying types are hashable, don't need to write hash functions 
+struct Follower: Codable, Hashable {
     var login: String
     var avatarUrl: String
     
@@ -15,4 +16,11 @@ struct Follower: Codable {
         case login
         case avatarUrl = "avatar_url"
     }
+    
+    /*
+     Example of hashing function:
+     func hash(into hasher: inout Hasher) {
+        hasher.combine(login)
+     }
+     */
 }
