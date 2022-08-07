@@ -60,7 +60,7 @@ class SearchVC: UIViewController {
             return
         }
             
-        let vc = FollowersListVC()
+        let vc = FollowerListVC()
         
         // Pass username to the next screen
         vc.username = usernameTextField.text

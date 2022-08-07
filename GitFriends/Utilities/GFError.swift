@@ -1,5 +1,5 @@
 //
-//  ErrorMessage.swift
+//  GFError.swift
 //  GitFriends
 //
 //  Created by Nadia Siddiqah on 8/4/22.
